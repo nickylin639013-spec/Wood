@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@theme {
+  --font-sans: "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-wood-dark: #3E2723;
+  --color-wood-medium: #5D4037;
+  --color-wood-light: #8D6E63;
+  --color-wood-accent: #F9A825;
+  --color-wood-bg: #FAF6F1;
+}
+
+@layer base {
+  body {
+    @apply bg-wood-bg text-wood-dark font-sans;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  input[type="number"] {
+    @apply font-mono;
+  }
+}
+
+.wood-grain-header {
+  background: linear-gradient(135deg, #3E2723 0%, #5D4037 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.wood-grain-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.1;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.1) 2px,
+    rgba(255, 255, 255, 0.1) 4px
+  );
+  pointer-events: none;
+}
+
+.card-panel {
+  @apply bg-white rounded-xl shadow-md border border-wood-light/20 p-4;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-wood-accent to-[#FFB300] text-wood-dark font-bold py-3 px-6 rounded-lg shadow-lg active:scale-95 transition-transform;
+}
+
+.btn-secondary {
+  @apply bg-wood-medium text-white py-2 px-4 rounded-lg active:scale-95 transition-transform;
+}
+
+.input-group {
+  @apply flex flex-col gap-1 mb-4;
+}
+
+.input-field {
+  @apply border-2 border-wood-light/30 rounded-lg px-3 py-2 focus:border-wood-accent outline-none bg-white transition-colors;
+}
+
+.unit-label {
+  @apply text-xs text-wood-light font-medium ml-1;
+}
+
+/* PWA Splash Screen and iOS specific */
+@media (display-mode: standalone) {
+  body {
+    user-select: none;
+  }
+}
+
+.safe-area-inset-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
